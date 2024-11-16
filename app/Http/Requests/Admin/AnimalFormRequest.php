@@ -24,12 +24,12 @@ class AnimalFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:20'],
             'type' => ['required', 'exists:types,name'],
             'breed' => ['required', 'exists:breeds,name'],
-            'age' => ['required', 'integer', 'min:0'],
+            'age' => ['required', 'integer', 'min:1'],
             'description' => ['required', 'string', 'max:2000'],
-            'price' => ['required', 'integer', 'min:0'],
+            'price' => ['required', 'integer', 'min:1'],
             'status' => ['required', Rule::enum(StatusEnum::class)],
 
         ];
