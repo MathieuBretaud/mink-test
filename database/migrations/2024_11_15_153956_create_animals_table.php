@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\Breed::class)->constrained();
             $table->string('name');
             $table->integer('age');
-            $table->longText('description');
+            $table->text('description');
             $table->integer('price');
             $table->enum('status', ['en vente', 'vendu'])->default('en vente');
             $table->timestamps();
