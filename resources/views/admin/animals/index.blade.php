@@ -26,9 +26,9 @@
                 <td>{{ $animal->name }}</td>
                 <td>{{ $animal->age }}</td>
                 <td>{{ number_format($animal->price, thousands_separator: ' ') }}</td>
-                <td>{{ $animal->type }}</td>
-                <td>{{ $animal->breed }}</td>
-                <td>{{ $animal->status }}</td>
+                <td>{{ $animal->type->name }}</td>
+                <td>{{ $animal->breed->name }}</td>
+                <td>{{ __('status.' . $animal->status) }}</td>
             </tr>
         @endforeach
         </tbody>
