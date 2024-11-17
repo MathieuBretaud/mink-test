@@ -14,7 +14,7 @@
             @include('shared.input', ['label' => 'Nom', 'name' => 'name', 'value' => $animal->name])
             @include('shared.input', ['type' => 'textarea' , 'name' => 'description', 'value' => $animal->description])
             @include('shared.input', ['type' => 'number', 'name' => 'age', 'value' => $animal->age])
-            @include('shared.input', ['label' => 'Prix HT', 'type' => 'number', 'name' => 'price', 'value' => $animal->price])
+            @include('shared.input', ['label' => 'Prix HT €', 'type' => 'number', 'name' => 'price', 'value' => $animal->price])
             @include('shared.enum', ['label' => 'Statut', 'datas' => $statuses , 'name' => 'status', 'value' => $animal->status])
             @include('shared.select', ['datas' => $types , 'label' => 'Type', 'name' => 'type_id', 'value' => $animal->type?->id])
             @include('shared.select', ['datas' => $breeds , 'label' => 'Race', 'name' => 'breed_id', 'value' => $animal->breed?->id])

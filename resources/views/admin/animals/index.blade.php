@@ -14,10 +14,11 @@
         <tr>
             <th>Nom</th>
             <th>Age</th>
-            <th>Prix</th>
+            <th>Prix HT</th>
             <th>Type</th>
             <th>Race</th>
             <th>Statut</th>
+            <th class="text-end">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -25,14 +26,25 @@
             <tr>
                 <td>{{ $animal->name }}</td>
                 <td>{{ $animal->age }}</td>
-                <td>{{ number_format($animal->price, thousands_separator: ' ') }}</td>
+                <td>{{ number_format($animal->price, thousands_separator: ' ') }} €</td>
                 <td>{{ $animal->type->name }}</td>
                 <td>{{ $animal->breed->name }}</td>
                 <td>{{ __('status.' . $animal->status) }}</td>
+                <td>
+                    <div class="flex gap-2 w-full justify-end">
+                        <a class="btn btn-primary" href="{{ route('admin.animal.edit', $animal) }}">Editer</a>
+                        <form action="{{route('admin.animal.destroy', $animal)}}" method="post">
+                            @csrf
+                            @method("delete")
+                            <button class="btn btn-error">Supprimer</button>
+                        </form>
+                    </div>
+                </td>
             </tr>
         @endforeach
         </tbody>
     </table>
-
-    {{ $animals->links() }}
+    <div class="mt-4">
+        {{ $animals->links() }}
+    </div>
 @endsection
