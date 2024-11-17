@@ -10,8 +10,8 @@
     <label for="{{ $name }}">{{ $label }}</label>
     <select class="select select-bordered" name="{{ $name }}" id="{{ $name }}">
         <option value="">{{ $placeholder }}</option>
-        @foreach($datas as $data)
-            <option value="{{ $data->id }}">{{ $data->name }}</option>
+        @foreach($datas as $k => $v)
+            <option value="{{ $v->id }}" @selected($v->id == $value) >{{ $v->name }}</option>
         @endforeach
     </select>
     @error($name)
