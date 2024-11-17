@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('age');
             $table->text('description');
             $table->integer('price');
-            $table->enum('status', ['en vente', 'vendu'])->default('en vente');
+            $table->enum('status', ['for_sale', 'sold'])->default('for_sale');
             $table->timestamps();
         });
     }
