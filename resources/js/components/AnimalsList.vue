@@ -11,7 +11,7 @@ onMounted( async () => {
   if (response.status === 200) {
     animals.value = response.data.data
   }
-  console.log(animals.value)
+  console.log(response.data)
   } catch (error) {
     console.error('Erreur lors de la récupération des animaux:', error);
   }
@@ -30,7 +30,6 @@ onMounted( async () => {
         <th>Type</th>
         <th>Race</th>
         <th>Prix TTC €</th>
-        <th>Statut</th>
       </tr>
       </thead>
       <tbody>
@@ -42,7 +41,6 @@ onMounted( async () => {
         <td>{{ animal.type.name }}</td>
         <td>{{ animal.breed.name }}</td>
         <td>{{ animal.price }} €</td>
-        <td>{{ animal.status }}</td>
       </tr>
       </tbody>
     </table>

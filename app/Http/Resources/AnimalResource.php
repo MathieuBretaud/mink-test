@@ -23,7 +23,7 @@ class AnimalResource extends JsonResource
             'age' => $this->age,
             'description' => $this->description,
             'price' => round($priceWithVat, 2),
-            'status' => __('status.' . $this->status),
+//            'status' => __('status.' . $this->status),
             'type' => new TypeResource($this->type),
             'breed' => new BreedResource($this->breed)
         ];
