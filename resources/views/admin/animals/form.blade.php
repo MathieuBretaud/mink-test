@@ -9,7 +9,18 @@
     <form action="{{ route($animal->exists ? 'admin.animal.update' : 'admin.animal.store', $animal) }}" method="post">
 
         @csrf
-        @method($animal ? 'put' : 'post')
+        @method($animal->exists ? 'put' : 'post')
+
+        <div class="flex flex-col gap-4 justify-center">
+            @include('shared.input', ['label' => 'Nom', 'name' => 'name', 'value' => $animal->name])
+            @include('shared.input', ['type' => 'textarea' , 'name' => 'description', 'value' => $animal->description])
+            @include('shared.input', ['type' => 'number', 'name' => 'age', 'value' => $animal->age])
+            @include('shared.input', ['label' => 'Prix HT', 'type' => 'number', 'name' => 'price', 'value' => $animal->price])
+            @include('shared.enum', ['label' => 'Statut', 'datas' => $statuses , 'name' => 'status', 'value' => $animal->status])
+            @include('shared.select', ['datas' => $types , 'name' => 'type_id', 'value' => $animal->type])
+            @include('shared.select', ['datas' => $breeds , 'label' => 'Race', 'name' => 'breed_id', 'value' => $animal->race])
+
+        </div>
 
         <div>
             <button class="btn">
