@@ -9,11 +9,7 @@
 <body>
 <div class="container mx-auto mt-4">
 
-    @if(session('success'))
-        <div role="alert" class="alert alert-success mb-3">
-            {{ session('success') }}
-        </div>
-    @endif
+    @include('shared.flash')
 
     @yield('content')
 </div>
