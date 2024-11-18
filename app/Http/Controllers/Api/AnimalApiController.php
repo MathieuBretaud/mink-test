@@ -5,15 +5,31 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\AnimalResource;
 use App\Models\Animal;
+use App\Models\Type;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class AnimalApiController
 {
-    public function __invoke(): AnonymousResourceCollection
+    public function __invoke(Request $request)
     {
-        $animals = Animal::with('type', 'breed')->orderBy('created_at', 'desc')->paginate(25);
-        return AnimalResource::collection($animals);
+        $query = Animal::query()->with('type', 'breed');
+
+        if ($request->input('orderBy') === 'type') {
+            $query->orderBy(
+                Type::select('name')->whereColumn('id', 'animals.type_id'),
+                $request->input('direction')
+            );
+        } elseif ($request->input('orderBy')) {
+            $query->orderBy($request->input('orderBy'),
+                $request->input('direction')
+            );
+        }
+
+        $animals = $query->paginate(25);
+        return response()->json($animals);
+//        return AnimalResource::collection($query->paginate(25));
     }
 
 }
