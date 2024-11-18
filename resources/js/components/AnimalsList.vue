@@ -1,24 +1,17 @@
 <script setup>
-import { onMounted, ref } from "vue";
-
-const animals = ref([])
-
-onMounted( async () => {
-  try {
-  await axios.get('/sanctum/csrf-cookie');
-  let response = await axios.get('/api/animals');
-
-  if (response.status === 200) {
-    animals.value = response.data.data
-  }
-  console.log(response.data)
-  } catch (error) {
-    console.error('Erreur lors de la récupération des animaux:', error);
-  }
+defineProps({
+  animals: Array
 })
 </script>
 
 <template>
+  <!--  <a-->
+  <!--      class="text-gray-500 hover:text-gray-700 rounded-md px-3 py-2 text-sm font-medium cursor-pointer"-->
+  <!--      :class="{'text-indigo-500': orderBy === 'name'}"-->
+  <!--      @click="toggleOrder('name')"-->
+  <!--  >-->
+  <!--    Trier par nom-->
+  <!--  </a>-->
   <div class="overflow-x-auto">
     <table class="table">
       <!-- head -->
