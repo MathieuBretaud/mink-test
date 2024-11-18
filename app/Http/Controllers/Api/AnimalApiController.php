@@ -17,7 +17,7 @@ class AnimalApiController
         $sortBy = $request->input('orderBy');
         $direction = $request->input('direction');
 
-        $query = Animal::query()->with('type', 'breed')
+        $query = Animal::query()->with(['type', 'breed'])
             ->sortByAndDirection($sortBy, $direction);
 
 //        if ($request->input('orderBy') === 'type') {
