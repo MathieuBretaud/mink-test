@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\QueryBuilders\AnimalQueryBuilder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -20,6 +21,12 @@ class Animal extends Model
         'type_id',
         'breed_id',
     ];
+
+
+    public function newEloquentBuilder($query): AnimalQueryBuilder
+    {
+        return new AnimalQueryBuilder($query);
+    }
 
     public function type(): BelongsTo
     {
