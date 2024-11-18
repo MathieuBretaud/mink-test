@@ -1,12 +1,11 @@
 @php
-    $class ??= null;
     $name ??= '';
     $value ??= '';
     $label ??= ucfirst($name);
     $datas ??= [];
     $placeholder ??= 'Sélectionnez une option';
 @endphp
-<div @class(["form-group", $class])>
+<div class="flex flex-col gap-2">
     <label for="{{ $name }}">{{ $label }}</label>
     <select class="select select-bordered" name="{{ $name }}" id="{{ $name }}">
         <option value="">{{ $placeholder }}</option>

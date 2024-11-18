@@ -1,11 +1,10 @@
 @php
     $type ??= 'text';
-    $class ??= null;
     $name ??= '';
     $value ??= '';
     $label ??= ucfirst($name);
 @endphp
-<div @class(["form-group", $class])>
+<div class="">
     <label for="{{ $name }}">{{ $label }}</label>
     @if($type === 'textarea')
         <textarea class="input input-bordered form-control @error($name) input-error @enderror" type="{{ $type }}" id="{{ $name }}" name="{{ $name }}">{{ old($name, $value) }}</textarea>

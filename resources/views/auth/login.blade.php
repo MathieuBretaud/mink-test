@@ -1,6 +1,6 @@
 @extends('base')
 
-@section('title', 'Se connecter')
+@section('title', 'Connexion')
 
 @section('content')
 

@@ -40,8 +40,8 @@ class AnimalController extends Controller
      */
     public function store(AnimalFormRequest $request):RedirectResponse
     {
-//        dd($request->validated());
         $animal = Animal::create($request->validated());
+        $animal->attachFiles($request->validated('pictures'));
         return to_route('admin.animal.index')->with('success', "L'animal a bien été créé");
     }
 
@@ -64,6 +64,7 @@ class AnimalController extends Controller
     public function update(AnimalFormRequest $request, Animal $animal): RedirectResponse
     {
         $animal->update($request->validated());
+        $animal->attachFiles($request->validated('pictures'));
         return to_route('admin.animal.index')->with('success', "L'animal a bien été modifié");
     }
 

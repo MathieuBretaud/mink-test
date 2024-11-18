@@ -17,7 +17,7 @@
         </ul>
     </div>
 </div>
-<div class="container mx-auto mt-4" id="app">
+<div class="flex-grow container mx-auto px-4 py-8" id="app">
 
     @yield('content')
 </div>
