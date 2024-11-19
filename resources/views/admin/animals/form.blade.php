@@ -3,7 +3,7 @@
 @section('title', $animal->exists ? "Editer un animal" : "Créer un animal")
 
 @section('content')
-    <div class="mx-auto flex flex-col items-center justify-center">
+    <div class="container mx-auto max-w-6xl px-4">
 
         <h1 class="text-xl mb-4">@yield('title')</h1>
         <form action="{{ route($animal->exists ? 'admin.animal.update' : 'admin.animal.store', $animal) }}"
@@ -11,8 +11,8 @@
 
             @csrf
             @method($animal->exists ? 'put' : 'post')
-            <div class="flex gap-3">
-                <div class="flex flex-col gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
                     @include('shared.input', ['label' => 'Nom', 'name' => 'name', 'value' => $animal->name])
                     @include('shared.input', ['type' => 'textarea' , 'name' => 'description', 'value' => $animal->description])
                     @include('shared.input', ['type' => 'number', 'name' => 'age', 'value' => $animal->age])
@@ -22,13 +22,16 @@
                     @include('shared.select', ['datas' => $breeds , 'label' => 'Race', 'name' => 'breed_id', 'value' => $animal->breed?->id])
 
                 </div>
-                <div class="flex items-start">
-                    @foreach($animal->pictures as $picture)
-                        <img src="{{ $picture->getImageUrl() }}" alt="" class="w-full block">
-                    @endforeach
-                    @include('shared.upload', ['name' => 'pictures', 'label' => 'Images', 'multiple' => true])
-                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <input-picture :animal='@json($animal['id'])'></input-picture>
+                    {{--                <div class="space-y-4">--}}
+                    {{--                    @foreach($animal->pictures as $picture)--}}
+                    {{--                        <img src="{{ $picture->getImageUrl() }}" alt="" class="w-full block">--}}
+                    {{--                    @endforeach--}}
+                    {{--                    @include('shared.upload', ['name' => 'pictures', 'label' => 'Images', 'multiple' => true])--}}
+                    {{--                </div>--}}
 
+                </div>
             </div>
 
             <div class="mt-2">

@@ -6,6 +6,8 @@ use App\QueryBuilders\AnimalQueryBuilder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\UploadedFile;
 
 /**
  * @mixin IdeHelperAnimal
@@ -36,6 +38,36 @@ class Animal extends Model
     public function breed(): BelongsTo
     {
         return $this->belongsTo(Breed::class);
+    }
+
+    public function pictures(): HasMany
+    {
+        return $this->hasMany(Picture::class);
+    }
+
+    /**
+     * @param UploadedFile[] $files
+     */
+    public function attachFiles(array $files): void
+    {
+        $pictures = [];
+        foreach($files as $file) {
+            if ($file->getError()) {
+                continue;
+            }
+            $filename = $file->store('animals/' . $this->id, 'public');
+            $pictures[] = [
+                'filename' => $filename
+            ];
+        }
+        if (count($pictures) > 0) {
+            $this->pictures()->createMany($pictures);
+        }
+    }
+
+    public function getPicture(): ?Picture
+    {
+        return $this->pictures[0] ?? null;
     }
 
     protected function price(): Attribute

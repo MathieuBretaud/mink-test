@@ -38,7 +38,7 @@ class AnimalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AnimalFormRequest $request):RedirectResponse
+    public function store(AnimalFormRequest $request): RedirectResponse
     {
         $animal = Animal::create($request->validated());
         $animal->attachFiles($request->validated('pictures'));

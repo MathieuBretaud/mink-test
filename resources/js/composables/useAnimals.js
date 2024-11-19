@@ -7,7 +7,7 @@ export function useAnimals () {
 
     const getAnimals = async () => {
         try {
-            let { data } = await axios.get('/api/animals', {
+            const { data } = await axios.get('/api/animals', {
                 params: {
                     orderBy: orderBy.value,
                     direction: direction.value,

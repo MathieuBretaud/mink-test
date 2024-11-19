@@ -7,7 +7,7 @@
     <title>@yield('title') | Administration </title>
 </head>
 <body>
-<div class="container mx-auto mt-4">
+<div class="container mx-auto mt-4" id="app">
 
     @include('shared.flash')
 
