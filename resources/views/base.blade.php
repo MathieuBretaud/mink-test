@@ -9,11 +9,16 @@
 <body>
 <div class="navbar bg-base-300">
     <div class="flex-1">
-        <a class="btn btn-ghost text-xl">Mink-test</a>
+        <a href="{{ route('home') }}" class="btn btn-ghost text-xl">Mink-test</a>
     </div>
+    @php
+        $route = request()->route()->getName();
+    @endphp
     <div class="flex-none">
         <ul class="menu menu-horizontal px-1">
-            <li><a>Connexion</a></li>
+            <li>
+                <a href="{{ route('login') }}" @class(['nav-link', 'active' => str_contains($route, 'login')])>Connexion</a>
+            </li>
         </ul>
     </div>
 </div>
