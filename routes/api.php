@@ -8,7 +8,11 @@ Route::get('/animals', \App\Http\Controllers\Api\AnimalApiController::class);
 Route::prefix('admin')->name('admin.')->middleware('auth:sanctum')->group(function () {
     $idRegex = '[0-9]+';
 
-    Route::get('/pictures/{id}', [\App\Http\Controllers\Api\Admin\PictureController::class, 'picturesByAnimal'])->where([
+    Route::get('/pictures/animal/{id}', [\App\Http\Controllers\Api\Admin\PictureController::class, 'picturesByAnimal'])->where([
+        'id' => $idRegex,
+    ]);
+
+    Route::post('/pictures/animal/{id}', [\App\Http\Controllers\Api\Admin\PictureController::class, 'storePicturesByAnimal'])->where([
         'id' => $idRegex,
     ]);
 

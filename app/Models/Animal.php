@@ -42,7 +42,7 @@ class Animal extends Model
 
     public function pictures(): HasMany
     {
-        return $this->hasMany(Picture::class);
+        return $this->hasMany(Picture::class)->orderBy('created_at', 'desc');
     }
 
     /**

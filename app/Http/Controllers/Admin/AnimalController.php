@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AnimalFormRequest;
 use App\Models\Animal;
 use App\Models\Breed;
+use App\Models\Picture;
 use App\Models\Type;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -73,6 +74,7 @@ class AnimalController extends Controller
      */
     public function destroy(Animal $animal): RedirectResponse
     {
+        Picture::destroy($animal->pictures()->pluck('id'));
         $animal->delete();
         return to_route('admin.animal.index')->with('success', "L'animal a bien été supprimé");
     }

@@ -6,7 +6,7 @@ use App\Enums\StatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class AnimalFormRequest extends FormRequest
+class PictureRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,8 @@ class AnimalFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['string', 'max:20'],
-            'type_id' => ['required', 'exists:types,id'],
-            'breed_id' => ['required', 'exists:breeds,id'],
-            'age' => ['integer', 'min:1', 'max:2000'],
-            'description' => ['string', 'min:1', 'max:2000'],
-            'price' => ['numeric', 'gte:0'],
-            'status' => [Rule::enum(StatusEnum::class)],
+            'files' => 'required|array',
+            'files.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }
