@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, watch} from "vue";
+import {onMounted} from "vue";
 import {usePictures} from "../composables/usePictures.js";
 
 const props = defineProps(['animal'])
