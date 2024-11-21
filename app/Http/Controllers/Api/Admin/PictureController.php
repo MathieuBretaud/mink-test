@@ -10,6 +10,7 @@ use App\Http\Resources\PictureResource;
 use App\Models\Animal;
 use App\Models\Picture;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 
 class PictureController extends Controller
@@ -29,7 +30,7 @@ class PictureController extends Controller
         return response()->json(['error' => 'No files uploaded'], 400);
     }
 
-    public function picturesByAnimal(string $animal): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function picturesByAnimal(string $animal): JsonResource
     {
         $animalWithPicture = Animal::with('pictures')->find($animal);
         return PictureResource::collection($animalWithPicture->pictures);

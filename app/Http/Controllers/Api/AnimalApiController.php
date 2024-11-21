@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Api\SearchAnimalRequest;
 use App\Http\Resources\AnimalResource;
 use App\Models\Animal;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AnimalApiController
