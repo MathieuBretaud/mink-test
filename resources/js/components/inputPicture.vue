@@ -38,7 +38,7 @@ onMounted(async () => {
   <div class="flex flex-col justify-center gap-7">
     <div v-for="picture in pictures" :key="picture.id" class="mb-7">
       <div  class="relative">
-        <img :src="'/storage/' + picture.filename" alt="" class="w-full block">
+        <img :src="picture.thumbnail" alt="" class="w-full block">
         <button class="btn btn-error absolute -bottom-10 left-0 w-full" @click.prevent="deletedPicture(picture.id)">Supprimer
         </button>
       </div>
