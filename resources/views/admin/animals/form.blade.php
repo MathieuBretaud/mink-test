@@ -22,7 +22,7 @@
                     @include('shared.select', ['datas' => $breeds , 'label' => 'Race', 'name' => 'breed_id', 'value' => $animal->breed?->id])
 
                     <div class="mt-2">
-                        <button class="btn">
+                        <button class="btn btn-wide">
                             @if($animal->exists)
                                 Modifier
                             @else

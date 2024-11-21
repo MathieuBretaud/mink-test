@@ -5,7 +5,7 @@
     $datas ??= [];
     $placeholder ??= 'Sélectionnez une option';
 @endphp
-<div class="flex flex-col gap-2">
+<div class="flex flex-col gap-2 w-44 max-w-xs">
     <label for="{{ $name }}">{{ $label }}</label>
     <select class="select select-bordered" name="{{ $name }}" id="{{ $name }}">
         <option value="">{{ $placeholder }}</option>

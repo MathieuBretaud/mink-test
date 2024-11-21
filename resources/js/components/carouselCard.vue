@@ -28,15 +28,11 @@ const hasPictures = computed(() => props.pictures && props.pictures.length > 0);
       </a>
     </div>
   </div>
-  <div v-else class="text-center py-4">
+  <div v-else class="text-center">
     <img src="/empty.jpg" alt="empty-picture" class="w-full h-64 object-cover"/>
   </div>
 </template>
 
 <style scoped>
-.carousel-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
+
 </style>

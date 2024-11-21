@@ -5,7 +5,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="grid grid-cols-3 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     <div v-for="animal in animals">
       <card-animal :animal="animal"/>
     </div>
