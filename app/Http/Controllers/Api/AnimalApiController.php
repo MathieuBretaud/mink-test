@@ -17,7 +17,7 @@ class AnimalApiController
         $sortBy = $request->input('orderBy');
         $direction = $request->input('direction');
 
-        $query = Animal::query()->with(['type', 'breed'])
+        $query = Animal::query()->with(['type', 'breed', 'pictures'])
             ->sortByAndDirection($sortBy, $direction);
 
 //        if ($request->input('orderBy') === 'type') {
@@ -32,8 +32,8 @@ class AnimalApiController
 //        }
 
         $animals = $query->paginate(25);
-        return response()->json($animals);
-//        return AnimalResource::collection($query->paginate(25));
+//        return response()->json($animals);
+        return AnimalResource::collection($query->paginate(25));
     }
 
 }

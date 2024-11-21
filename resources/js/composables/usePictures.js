@@ -6,7 +6,7 @@ export function usePictures() {
     const getPictures = async (animalId) => {
         try {
             const response = await axios.get(`/api/admin/pictures/animal/${animalId}`);
-            pictures.value = response.data
+            pictures.value = response.data.data
         } catch (err) {
             console.log(err);
         }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PictureRequest;
+use App\Http\Resources\AnimalResource;
+use App\Http\Resources\PictureResource;
 use App\Models\Animal;
 use App\Models\Picture;
 use Illuminate\Http\JsonResponse;
@@ -27,10 +29,11 @@ class PictureController extends Controller
         return response()->json(['error' => 'No files uploaded'], 400);
     }
 
-    public function picturesByAnimal(string $animal): JsonResponse
+    public function picturesByAnimal(string $animal): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $animalWithPicture = Animal::with('pictures')->find($animal);
-        return response()->json($animalWithPicture->pictures);
+        return PictureResource::collection($animalWithPicture->pictures);
+//        return response()->json($animalWithPicture->pictures);
     }
 
     public function delete(Picture $picture): Response

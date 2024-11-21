@@ -25,7 +25,8 @@ class AnimalResource extends JsonResource
             'price' => round($priceWithVat, 2),
 //            'status' => __('status.' . $this->status),
             'type' => new TypeResource($this->type),
-            'breed' => new BreedResource($this->breed)
+            'breed' => new BreedResource($this->breed),
+            'pictures' => PictureResource::collection($this->pictures)
         ];
     }
 }
