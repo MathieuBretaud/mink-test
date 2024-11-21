@@ -19,6 +19,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth:sanctum')->group(functi
     Route::delete('/picture/{picture}', [\App\Http\Controllers\Api\Admin\PictureController::class, 'delete'])->where([
         'picture' => $idRegex,
     ]);
+
+    Route::get('/types', \App\Http\Controllers\Api\Admin\TypeController::class);
+    Route::get('/breeds', \App\Http\Controllers\Api\Admin\BreedController::class);
 });
 
 
