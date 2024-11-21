@@ -6,6 +6,7 @@
 
     <h1>Homepage</h1>
 
-        <animals-list></animals-list>
+{{--        <animals-list></animals-list>--}}
+    <animal-index></animal-index>
 
 @endsection
