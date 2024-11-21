@@ -12,7 +12,8 @@ defineProps({
     <div class="card-body">
       <h2 class="card-title">
         {{ animal.name }}
-        <div class="badge badge-primary">{{animal.age}} ans</div>
+        <div class="badge">{{animal.age}} ans</div>
+        <div class="badge badge-primary">{{animal.price}} €</div>
       </h2>
       <p>{{ animal.description }}</p>
       <div class="card-actions justify-end">
