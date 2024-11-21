@@ -32,10 +32,12 @@
                         </button>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <input-picture :animal='@json($animal['id'])'></input-picture>
-                </div>
+                @if($animal->exists)
+                    <div class="grid grid-cols-2 gap-4">
+                        <input-picture :animal='@json($animal['id'])'></input-picture>
+                    </div>
             </div>
+            @endif
         </form>
     </div>
 
