@@ -1,18 +1,39 @@
 <script setup>
-import {onMounted} from "vue";
+import {onMounted, ref, watch} from "vue";
 import {useAnimals} from "../composables/useAnimals.js";
 import AnimalsList from "./AnimalsList.vue";
+import {useTypes} from "../composables/useTypes.js";
+import {useBreeds} from "../composables/useBreeds.js";
+
+
+const {types, getTypes} = useTypes()
+
+const {breeds, getBreeds} = useBreeds()
+
+const typeSelected = ref('')
+const breedSelected = ref('')
 
 const {
   animals,
   getAnimals,
   toggleOrder,
   orderBy,
+    filterByType,
+    filterByBreed
 } = useAnimals();
 
 onMounted(async () => {
   await getAnimals();
+  await getTypes()
+  await getBreeds()
 });
+
+watch([typeSelected, breedSelected], async () => {
+  filterByType.value = typeSelected.value
+  filterByBreed.value = breedSelected.value
+  await getAnimals();
+})
+
 </script>
 
 <template>
@@ -56,6 +77,20 @@ onMounted(async () => {
         >
           Trier par prix
         </a>
+        <select v-model="typeSelected" class="select select-bordered w-48 max-w-xs">
+          <option value="" selected>Choisir un type</option>
+          <template v-for="type in types">
+            <option :value="type.id">{{ type.name }}</option>
+          </template>
+        </select>
+        <select v-model="breedSelected" class="select select-bordered w-48 max-w-xs">
+          <option value="" disabled selected>Choisir une race</option>
+          <template v-for="breed in breeds">
+            <option :value="breed.id">{{ breed.name }}</option>
+          </template>
+
+
+        </select>
       </nav>
     </div>
   </div>
