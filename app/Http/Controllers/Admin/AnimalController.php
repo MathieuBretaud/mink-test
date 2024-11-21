@@ -42,7 +42,9 @@ class AnimalController extends Controller
     public function store(AnimalFormRequest $request): RedirectResponse
     {
         $animal = Animal::create($request->validated());
-        $animal->attachFiles($request->validated('pictures'));
+        if ($request->hasFile('picture')) {
+            $animal->attachFiles($request->validated('pictures'));
+        }
         return to_route('admin.animal.index')->with('success', "L'animal a bien été créé");
     }
 
