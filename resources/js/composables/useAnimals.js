@@ -4,6 +4,8 @@ export function useAnimals () {
     const animals = ref([]);
     const orderBy = ref(null);
     const direction = ref('desc');
+    const filterByType = ref(null)
+    const filterByBreed = ref(null)
 
     const getAnimals = async () => {
         try {
@@ -11,6 +13,8 @@ export function useAnimals () {
                 params: {
                     orderBy: orderBy.value,
                     direction: direction.value,
+                    type: filterByType.value,
+                    breed: filterByBreed.value
                 }
             });
             animals.value = data.data;
@@ -34,5 +38,7 @@ export function useAnimals () {
         getAnimals,
         toggleOrder,
         orderBy,
+        filterByType,
+        filterByBreed
     }
 }
