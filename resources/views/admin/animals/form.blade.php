@@ -21,30 +21,21 @@
                     @include('shared.select', ['datas' => $types , 'label' => 'Type', 'name' => 'type_id', 'value' => $animal->type?->id])
                     @include('shared.select', ['datas' => $breeds , 'label' => 'Race', 'name' => 'breed_id', 'value' => $animal->breed?->id])
 
+                    <div class="mt-2">
+                        <button class="btn">
+                            @if($animal->exists)
+                                Modifier
+                            @else
+                                Créer
+                            @endif
+
+                        </button>
+                    </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <input-picture :animal='@json($animal['id'])'></input-picture>
-                    {{--                <div class="space-y-4">--}}
-                    {{--                    @foreach($animal->pictures as $picture)--}}
-                    {{--                        <img src="{{ $picture->getImageUrl() }}" alt="" class="w-full block">--}}
-                    {{--                    @endforeach--}}
-                    {{--                    @include('shared.upload', ['name' => 'pictures', 'label' => 'Images', 'multiple' => true])--}}
-                    {{--                </div>--}}
-
                 </div>
             </div>
-
-            <div class="mt-2">
-                <button class="btn">
-                    @if($animal->exists)
-                        Modifier
-                    @else
-                        Créer
-                    @endif
-
-                </button>
-            </div>
-
         </form>
     </div>
 
