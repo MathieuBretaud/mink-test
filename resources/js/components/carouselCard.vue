@@ -3,10 +3,10 @@ import { computed } from 'vue';
 
 const props = defineProps({
   pictures: {
-    type: Array,
+    type: Object,
   },
   animal: {
-    type: Array
+    type: Object
   }
 });
 
