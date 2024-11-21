@@ -65,10 +65,7 @@ class Animal extends Model
         }
     }
 
-    public function getPicture(): ?Picture
-    {
-        return $this->pictures[0] ?? null;
-    }
+    //prix en centime
 
     protected function price(): Attribute
     {
