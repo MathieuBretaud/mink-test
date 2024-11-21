@@ -5,34 +5,26 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\AnimalResource;
 use App\Models\Animal;
-use App\Models\Type;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class AnimalApiController
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): JsonResource
     {
-        $sortBy = $request->input('orderBy');
-        $direction = $request->input('direction');
+        $sortBy = $request->get('orderBy');
+        $direction = $request->get('direction');
+        $filterType = $request->get('type');
+        $filterBreed = $request->get('breed');
 
         $query = Animal::query()->with(['type', 'breed', 'pictures'])
-            ->sortByAndDirection($sortBy, $direction);
-
-//        if ($request->input('orderBy') === 'type') {
-//            $query->orderBy(
-//                Type::select('name')->whereColumn('id', 'animals.type_id'),
-//                $request->input('direction')
-//            );
-//        } elseif ($request->input('orderBy')) {
-//            $query->orderBy($request->input('orderBy'),
-//                $request->input('direction')
-//            );
-//        }
-
-        $animals = $query->paginate(25);
-//        return response()->json($animals);
+            ->sortByAndDirection($sortBy, $direction)
+            ->when($filterType, function ($query) use ($filterType) {
+                $query->where('animals.type_id', $filterType);
+            })
+            ->when($filterBreed, function ($query) use ($filterBreed) {
+                $query->where('animals.breed_id', $filterBreed);
+            });
         return AnimalResource::collection($query->paginate(25));
     }
 
