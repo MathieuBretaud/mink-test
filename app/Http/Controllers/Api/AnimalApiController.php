@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\Api\SearchAnimalRequest;
 use App\Http\Resources\AnimalResource;
 use App\Models\Animal;
 use Illuminate\Http\Request;
@@ -10,12 +11,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class AnimalApiController
 {
-    public function __invoke(Request $request): JsonResource
+    public function __invoke(SearchAnimalRequest $request): JsonResource
     {
-        $sortBy = $request->get('orderBy');
-        $direction = $request->get('direction');
-        $filterType = $request->get('type');
-        $filterBreed = $request->get('breed');
+        $sortBy = $request->validated('orderBy');
+        $direction = $request->validated('direction');
+        $filterType = $request->validated('type');
+        $filterBreed = $request->validated('breed');
 
         $query = Animal::query()->with(['type', 'breed', 'pictures'])
             ->sortByAndDirection($sortBy, $direction)
