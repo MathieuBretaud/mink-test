@@ -7,8 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PictureResource extends JsonResource
 {
-    const WIDTH = 200;
-    const HEIGHT = 200;
+    const WIDTH = 400;
+    const HEIGHT = 300;
 
     /**
      * Transform the resource into an array.
