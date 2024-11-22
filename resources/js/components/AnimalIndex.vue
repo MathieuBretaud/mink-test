@@ -38,8 +38,8 @@ watch([typeSelected, breedSelected], async () => {
 
 <template>
   <div class="my-5">
-    <div class="hidden sm:block">
-      <nav class="flex space-x-4" aria-label="Tabs">
+    <div class="sm:block">
+      <nav class="flex flex-col md:flex-row space-x-4" aria-label="Tabs">
         <a
             class="text-gray-500 hover:text-gray-700 rounded-md px-3 py-2 text-sm font-medium cursor-pointer"
             :class="{'text-indigo-500': orderBy === 'name'}"
@@ -77,6 +77,8 @@ watch([typeSelected, breedSelected], async () => {
         >
           Trier par prix
         </a>
+        <div class="flex flex-col md:flex-row gap-4">
+
         <select v-model="typeSelected" class="select select-bordered w-48 max-w-xs">
           <option value="" selected>Choisir un type</option>
           <template v-for="type in types">
@@ -84,13 +86,12 @@ watch([typeSelected, breedSelected], async () => {
           </template>
         </select>
         <select v-model="breedSelected" class="select select-bordered w-48 max-w-xs">
-          <option value="" disabled selected>Choisir une race</option>
+          <option value="" selected>Choisir une race</option>
           <template v-for="breed in breeds">
             <option :value="breed.id">{{ breed.name }}</option>
           </template>
-
-
         </select>
+        </div>
       </nav>
     </div>
   </div>
