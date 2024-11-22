@@ -29,7 +29,7 @@ class AnimalPolicy
      */
     public function create(User $user): bool
     {
-        return $user->is_admin;
+        return !!$user->is_admin;
     }
 
     /**
@@ -37,7 +37,7 @@ class AnimalPolicy
      */
     public function update(User $user, Animal $animal): bool
     {
-        return $user->is_admin;
+        return !!$user->is_admin;
     }
 
     /**
@@ -45,7 +45,7 @@ class AnimalPolicy
      */
     public function delete(User $user, Animal $animal): bool
     {
-        return $user->is_admin;
+        return !!$user->is_admin;
     }
 
     /**
@@ -53,7 +53,7 @@ class AnimalPolicy
      */
     public function restore(User $user, Animal $animal): bool
     {
-        return $user->is_admin;
+        return !!$user->is_admin;
     }
 
     /**
@@ -61,6 +61,6 @@ class AnimalPolicy
      */
     public function forceDelete(User $user, Animal $animal): bool
     {
-        return $user->is_admin;
+        return !!$user->is_admin;
     }
 }
