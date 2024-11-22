@@ -9,7 +9,10 @@ Pré-requis :
 * MySQL  
 * LARAVEL 11
 * VUEJS
+
+Librairies :
 * DAISYUI  
+* GLIDE
 
 ## Installer les dépendances
 Dans un premier temps, positionnez vous dans le dossier du projet :
