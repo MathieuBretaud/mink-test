@@ -25,7 +25,7 @@ class AnimalApiController
             ->when($filterBreed, function ($query) use ($filterBreed) {
                 $query->where('animals.breed_id', $filterBreed);
             });
-        return AnimalResource::collection($query->get());
+        return AnimalResource::collection($query->paginate(9));
     }
 
 }

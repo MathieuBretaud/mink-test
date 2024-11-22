@@ -7,9 +7,9 @@ export function useAnimals () {
     const filterByType = ref(null)
     const filterByBreed = ref(null)
 
-    const getAnimals = async () => {
+    const getAnimals = async (page = 1) => {
         try {
-            const { data } = await axios.get('/api/animals', {
+            const { data } = await axios.get(`/api/animals?page=${page}`, {
                 params: {
                     orderBy: orderBy.value,
                     direction: direction.value,
@@ -17,7 +17,7 @@ export function useAnimals () {
                     breed: filterByBreed.value
                 }
             });
-            animals.value = data.data;
+            animals.value = data;
         } catch(err) {
             console.log(err);
         }

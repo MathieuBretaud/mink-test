@@ -4,6 +4,7 @@ import {useAnimals} from "../composables/useAnimals.js";
 import AnimalsList from "./AnimalsList.vue";
 import {useTypes} from "../composables/useTypes.js";
 import {useBreeds} from "../composables/useBreeds.js";
+import {TailwindPagination} from "laravel-vue-pagination";
 
 
 const {types, getTypes} = useTypes()
@@ -18,14 +19,15 @@ const {
   getAnimals,
   toggleOrder,
   orderBy,
-    filterByType,
-    filterByBreed
+  filterByType,
+  filterByBreed
 } = useAnimals();
 
 onMounted(async () => {
   await getAnimals();
   await getTypes()
   await getBreeds()
+  console.log(animals.value)
 });
 
 watch([typeSelected, breedSelected], async () => {
@@ -79,24 +81,29 @@ watch([typeSelected, breedSelected], async () => {
         </a>
         <div class="flex flex-col md:flex-row gap-4">
 
-        <select v-model="typeSelected" class="select select-bordered w-48 max-w-xs">
-          <option value="" selected>Choisir un type</option>
-          <template v-for="type in types">
-            <option :value="type.id">{{ type.name }}</option>
-          </template>
-        </select>
-        <select v-model="breedSelected" class="select select-bordered w-48 max-w-xs">
-          <option value="" selected>Choisir une race</option>
-          <template v-for="breed in breeds">
-            <option :value="breed.id">{{ breed.name }}</option>
-          </template>
-        </select>
+          <select v-model="typeSelected" class="select select-bordered w-48 max-w-xs">
+            <option value="" selected>Choisir un type</option>
+            <template v-for="type in types">
+              <option :value="type.id">{{ type.name }}</option>
+            </template>
+          </select>
+          <select v-model="breedSelected" class="select select-bordered w-48 max-w-xs">
+            <option value="" selected>Choisir une race</option>
+            <template v-for="breed in breeds">
+              <option :value="breed.id">{{ breed.name }}</option>
+            </template>
+          </select>
         </div>
       </nav>
     </div>
   </div>
-
   <animals-list :animals="animals"/>
+  <div class="text-center mt-4">
+    <TailwindPagination
+        :data="animals"
+        @pagination-change-page="getAnimals"
+    />
+  </div>
 </template>
 
 <style scoped>
