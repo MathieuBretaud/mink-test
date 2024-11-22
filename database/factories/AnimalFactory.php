@@ -23,7 +23,7 @@ class AnimalFactory extends Factory
         return [
             'type_id' => Type::inRandomOrder()->first()->id,
             'breed_id' => Breed::inRandomOrder()->first()->id,
-            'name' => $this->faker->name(),
+            'name' => $this->faker->firstName(),
             'age' => $this->faker->randomDigit(),
             'description' => $this->faker->text(),
             'price' => $this->faker->randomDigit(),
