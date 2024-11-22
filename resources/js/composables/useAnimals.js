@@ -39,6 +39,6 @@ export function useAnimals () {
         toggleOrder,
         orderBy,
         filterByType,
-        filterByBreed
+        filterByBreed,
     }
 }

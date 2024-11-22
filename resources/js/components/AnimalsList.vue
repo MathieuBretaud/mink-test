@@ -1,6 +1,5 @@
 <script setup>
-const props = defineProps(['animals'])
-console.log(props.animals)
+defineProps(['animals'])
 </script>
 
 <template>
