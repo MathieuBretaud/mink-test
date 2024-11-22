@@ -4,9 +4,8 @@
 
 @section('content')
 
-    <h1>Homepage</h1>
+    <h1>Liste des animaux de la ferme</h1>
 
-{{--        <animals-list></animals-list>--}}
     <animal-index></animal-index>
 
 @endsection

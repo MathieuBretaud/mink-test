@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/animals', \App\Http\Controllers\Api\AnimalApiController::class);
+Route::get('/types', \App\Http\Controllers\Api\Admin\TypeController::class);
+Route::get('/breeds', \App\Http\Controllers\Api\Admin\BreedController::class);
 
 Route::prefix('admin')->name('admin.')->middleware('auth:sanctum')->group(function () {
     $idRegex = '[0-9]+';
@@ -20,8 +22,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:sanctum')->group(functi
         'picture' => $idRegex,
     ]);
 
-    Route::get('/types', \App\Http\Controllers\Api\Admin\TypeController::class);
-    Route::get('/breeds', \App\Http\Controllers\Api\Admin\BreedController::class);
+
 });
 
 
