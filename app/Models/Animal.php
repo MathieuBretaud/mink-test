@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\QueryBuilders\AnimalQueryBuilder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,6 +15,9 @@ use Illuminate\Http\UploadedFile;
  */
 class Animal extends Model
 {
+    /** @use HasFactory<\Database\Factories\AnimalFactory> */
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'age',
@@ -51,7 +55,7 @@ class Animal extends Model
     public function attachFiles(array $files): void
     {
         $pictures = [];
-        foreach($files as $file) {
+        foreach ($files as $file) {
             if ($file->getError()) {
                 continue;
             }
@@ -70,8 +74,8 @@ class Animal extends Model
     protected function price(): Attribute
     {
         return Attribute::make(
-            get: fn (?int $value) => $value / 100,
-            set: fn (int $value) => (int) round($value * 100)
+            get: fn(?int $value) => $value / 100,
+            set: fn(int $value) => (int)round($value * 100)
         );
     }
 
