@@ -11,6 +11,7 @@ use App\Models\Breed;
 use App\Models\Picture;
 use App\Models\Type;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class AnimalController extends Controller
@@ -28,6 +29,7 @@ class AnimalController extends Controller
      */
     public function create(): View
     {
+        Gate::authorize('create', Animal::class);
         return view('admin.animals.form', [
             'animal' => new Animal(),
             'statuses' => StatusEnum::cases(),
@@ -41,6 +43,7 @@ class AnimalController extends Controller
      */
     public function store(AnimalFormRequest $request): RedirectResponse
     {
+        Gate::authorize('create', Animal::class);
         $animal = Animal::create($request->validated());
         if ($request->hasFile('picture')) {
             $animal->attachFiles($request->validated('pictures'));
@@ -53,6 +56,7 @@ class AnimalController extends Controller
      */
     public function edit(Animal $animal): View
     {
+        Gate::authorize('update', $animal);
         return view('admin.animals.form', [
             'animal' => $animal,
             'statuses' => StatusEnum::cases(),
@@ -66,6 +70,7 @@ class AnimalController extends Controller
      */
     public function update(AnimalFormRequest $request, Animal $animal): RedirectResponse
     {
+        Gate::authorize('update', $animal);
         $animal->update($request->validated());
         return to_route('admin.animal.index')->with('success', "L'animal a bien été modifié");
     }
@@ -75,6 +80,7 @@ class AnimalController extends Controller
      */
     public function destroy(Animal $animal): RedirectResponse
     {
+        Gate::authorize('delete', $animal);
         Picture::destroy($animal->pictures()->pluck('id'));
         $animal->delete();
         return to_route('admin.animal.index')->with('success', "L'animal a bien été supprimé");

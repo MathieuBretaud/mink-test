@@ -20,7 +20,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:sanctum')->group(functi
 
     Route::delete('/picture/{picture}', [\App\Http\Controllers\Api\Admin\PictureController::class, 'delete'])->where([
         'picture' => $idRegex,
-    ]);
+    ])->can('delete', 'picture');
 
 
 });
