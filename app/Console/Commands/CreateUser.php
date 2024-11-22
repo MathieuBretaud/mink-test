@@ -36,6 +36,7 @@ class CreateUser extends Command
             'name' => $name,
             'email' => $email,
             'password' => Hash::make($password),
+            'is_admin' => true
         ]);
         $this->info("User created successfully with ID: {$user->id}");
     }
