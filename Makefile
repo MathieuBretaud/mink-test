@@ -1,7 +1,7 @@
 
-install: vendor/autoload.php .env public/storage
-	php artisan cache:clear
+install: vendor/autoload.php .env public/storage public/build/manifest.json
 	php	artisan	migrate
+	php artisan cache:clear
 
 .env:
 	cp .env.example .env

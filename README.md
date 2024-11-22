@@ -3,14 +3,41 @@
 Temps passé sur le projet 4 jours
 
 ## TECHNOS UTILISÉ
-PHP 8.2  
-LARAVEL 11  
-VUEJS  
-DAISYUI  
 
-## Utilisation de Makefile pour l'installation du projet
+Pré-requis :  
+* PHP >= 8.2  
+* MySQL  
+* LARAVEL 11
+* VUEJS
+* DAISYUI  
 
-Pour préparer l'environnement complet, vous pouvez simplement exécuter :
+## Installer les dépendances
+Dans un premier temps, positionnez vous dans le dossier du projet :
+```
+cd <repo-name>
+```
 
-```bash
+Executer la commande suivante
+```
 make install
+```
+
+## Initialiser la base de donnée avec des données
+
+```
+make seed-all
+```
+
+## Créer un administrateur
+```
+php artisan user:create
+```
+## Re initialiser la base de données avec des données
+
+```
+make prepare
+```
+## À propos
+
+Ce test a été réalisé par Mathieu Bretaud. Si vous avez la moindre question, 
+contactez [Mathieu Bretaud](mailto:mathieu.bretaud@gmail.com?subject=[Github]%20test%20technique)
