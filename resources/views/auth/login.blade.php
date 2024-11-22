@@ -13,7 +13,7 @@
             @csrf
             @include('shared.input', ['type' => 'email', 'class' => 'col', 'name' => 'email', 'label' => 'Email'])
             @include('shared.input', ['type' => 'password', 'class' => 'col', 'name' => 'password', 'label' => 'Mot de passe'])
-            <div class="mt-4">
+            <div class="mt-4 text-center">
                 <button class="btn btn-primary">Se connecter</button>
             </div>
         </form>
