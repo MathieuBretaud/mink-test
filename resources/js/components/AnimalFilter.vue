@@ -1,6 +1,5 @@
 <script setup>
 import {onMounted} from "vue";
-import {useAnimals} from "../composables/useAnimals.js";
 import {useTypes} from "../composables/useTypes.js";
 import {useBreeds} from "../composables/useBreeds.js";
 
