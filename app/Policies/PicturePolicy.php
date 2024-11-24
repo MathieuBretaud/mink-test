@@ -45,7 +45,7 @@ class PicturePolicy
      */
     public function delete(User $user, Picture $picture): bool
     {
-        return $user->is_admin;
+        return !!$user->is_admin;
     }
 
     /**
@@ -53,7 +53,7 @@ class PicturePolicy
      */
     public function restore(User $user, Picture $picture): bool
     {
-        //
+        return !!$user->is_admin;
     }
 
     /**
@@ -61,6 +61,6 @@ class PicturePolicy
      */
     public function forceDelete(User $user, Picture $picture): bool
     {
-        //
+        return !!$user->is_admin;
     }
 }

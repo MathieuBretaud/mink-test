@@ -32,12 +32,16 @@
                 <td>{{ __('status.' . $animal->status) }}</td>
                 <td>
                     <div class="flex gap-2 w-full justify-end">
-                        <a class="btn btn-primary" href="{{ route('admin.animal.edit', $animal) }}">Editer</a>
-                        <form action="{{route('admin.animal.destroy', $animal)}}" method="post">
-                            @csrf
-                            @method("delete")
-                            <button class="btn btn-error">Supprimer</button>
-                        </form>
+                        @can('update', $animal)
+                            <a class="btn btn-primary" href="{{ route('admin.animal.edit', $animal) }}">Editer</a>
+                        @endcan
+                        @can('delete', $animal)
+                            <form action="{{route('admin.animal.destroy', $animal)}}" method="post">
+                                @csrf
+                                @method("delete")
+                                <button class="btn btn-error">Supprimer</button>
+                            </form>
+                        @endcan
                     </div>
                 </td>
             </tr>

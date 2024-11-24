@@ -13,9 +13,11 @@
                 </li>
             @endguest
             @auth
-                <li>
-                    <a href="{{ route('admin.animal.index') }}" @class(['nav-link', 'active' => str_contains($route, 'admin')])>Administration</a>
-                </li>
+                @if(auth()->user()->is_admin)
+                    <li>
+                        <a href="{{ route('admin.animal.index') }}" @class(['nav-link', 'active' => str_contains($route, 'admin')])>Administration</a>
+                    </li>
+                @endif
                 <li>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf

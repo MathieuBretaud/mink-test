@@ -10,6 +10,7 @@ use App\Models\Animal;
 use App\Models\Breed;
 use App\Models\Picture;
 use App\Models\Type;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
@@ -17,8 +18,12 @@ use Illuminate\View\View;
 class AnimalController extends Controller
 {
 
+    /**
+     * @throws AuthorizationException
+     */
     public function index(): View
     {
+        Gate::authorize('viewAny', Animal::class);
         return view('admin.animals.index', [
             'animals' => Animal::with('type', 'breed')->orderBy('created_at', 'desc')->paginate(25)
         ]);
@@ -26,6 +31,7 @@ class AnimalController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @throws AuthorizationException
      */
     public function create(): View
     {
@@ -40,6 +46,7 @@ class AnimalController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @throws AuthorizationException
      */
     public function store(AnimalFormRequest $request): RedirectResponse
     {
@@ -53,6 +60,7 @@ class AnimalController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * @throws AuthorizationException
      */
     public function edit(Animal $animal): View
     {
@@ -67,6 +75,7 @@ class AnimalController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @throws AuthorizationException
      */
     public function update(AnimalFormRequest $request, Animal $animal): RedirectResponse
     {
@@ -77,6 +86,7 @@ class AnimalController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @throws AuthorizationException
      */
     public function destroy(Animal $animal): RedirectResponse
     {

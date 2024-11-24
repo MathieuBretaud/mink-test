@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
+use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -10,7 +11,7 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/images/{path}', [ImageController::class, 'show'])->where('path', '.*');
 
 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdminMiddleware::class])->group(function () {
     Route::resource('animal', \App\Http\Controllers\Admin\AnimalController::class)->except(['show']);
 });
 

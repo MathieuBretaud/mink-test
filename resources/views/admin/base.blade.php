@@ -9,7 +9,7 @@
 <body>
 
 @include('shared.navbar')
-<h1>Administration</h1>
+<h1 class="text-2xl text-center">Administration</h1>
 
 <div class="container mx-auto mt-4" id="app">
     @include('shared.flash')

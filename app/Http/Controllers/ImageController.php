@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use League\Glide\Responses\SymfonyResponseFactory;
 use League\Glide\ServerFactory;
+use League\Glide\Signatures\SignatureException;
 use League\Glide\Signatures\SignatureFactory;
 
 class ImageController extends Controller
 {
 
+    /**
+     * @throws SignatureException
+     */
     public function show(Request $request, string $path)
     {
         SignatureFactory::create(config('glide.key'))->validateRequest($request->path(), $request->all());
