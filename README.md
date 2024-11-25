@@ -2,7 +2,7 @@
 
 Temps passé sur le projet 4 jours
 
-## TECHNOS UTILISÉ
+## TECHNOS UTILISÉES
 
 Pré-requis :  
 * PHP >= 8.2  
