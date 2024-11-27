@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Contracts\ImageResizerInterface;
+use App\DataTransfertObjects\ResizeOptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use League\Glide\Urls\UrlBuilderFactory;
@@ -24,10 +26,8 @@ class Picture extends Model
 
     public function getImageUrl(?int $width = null, ?int $height = null): string
     {
-        if ($width === null) {
-            return Storage::disk('public')->url($this->filename);
-        }
-        $urlBuilder = UrlBuilderFactory::create('/images/', config('glide.key'));
-        return $urlBuilder->getUrl($this->filename, ['w' => $width, 'h' => $height, 'fit' => 'crop']);
+        $resizer = app(ImageResizerInterface::class);
+        $options = new ResizeOptions($this->filename, $width, $height);
+        return $resizer->resize($options);
     }
 }
