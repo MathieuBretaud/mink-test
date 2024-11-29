@@ -12,7 +12,7 @@ class Input extends Component
     public function __construct(
         public string  $type = 'text',
         public string  $name = '',
-        public string  $value = '',
+        public ?string  $value = null,
         public ?string $label = null)
     {
         $this->label = $label ?? ucfirst($name);
