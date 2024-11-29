@@ -13,14 +13,13 @@
             @method($animal->exists ? 'put' : 'post')
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-4">
-                    @include('shared.input', ['label' => 'Nom', 'name' => 'name', 'value' => $animal->name])
-                    @include('shared.input', ['type' => 'textarea' , 'name' => 'description', 'value' => $animal->description])
-                    @include('shared.input', ['type' => 'number', 'name' => 'age', 'value' => $animal->age])
-                    @include('shared.input', ['label' => 'Prix HT €', 'type' => 'number', 'name' => 'price', 'value' => $animal->price])
-                    @include('shared.enum', ['label' => 'Statut', 'datas' => $statuses , 'name' => 'status', 'value' => $animal->status])
-                    @include('shared.select', ['datas' => $types , 'label' => 'Type', 'name' => 'type_id', 'value' => $animal->type?->id])
-                    @include('shared.select', ['datas' => $breeds , 'label' => 'Race', 'name' => 'breed_id', 'value' => $animal->breed?->id])
-
+                    <x-forms.input name="name" label="Nom" :value="$animal->name"/>
+                    <x-forms.input type="textarea" name="description" :value="$animal->description"/>
+                    <x-forms.input type="number" name="age" :value="$animal->age"/>
+                    <x-forms.input type="number" name="price" label="Prix HT €" :value="$animal->price"/>
+                    <x-forms.enum :datas="$statuses" name="status" :value="$animal->status"/>
+                    <x-forms.select :datas="$types" name="type_id" label="Type" :value="$animal->type?->id"/>
+                    <x-forms.select :datas="$breeds" name="breed_id" label="Race" :value="$animal->breed?->id"/>
                     <div class="mt-2">
                         <button class="btn btn-wide">
                             @if($animal->exists)
