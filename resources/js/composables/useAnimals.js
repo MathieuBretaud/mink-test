@@ -1,15 +1,15 @@
 import {ref} from "vue";
 
-export function useAnimals () {
+export function useAnimals() {
     const animals = ref([]);
-    const orderBy = ref(null);
+    const orderBy = ref('created_at');
     const direction = ref('desc');
     const filterByType = ref(null)
     const filterByBreed = ref(null)
 
     const getAnimals = async (page = 1) => {
         try {
-            const { data } = await axios.get(`/api/animals?page=${page}`, {
+            const {data} = await axios.get(`/api/animals?page=${page}`, {
                 params: {
                     orderBy: orderBy.value,
                     direction: direction.value,
@@ -18,7 +18,7 @@ export function useAnimals () {
                 }
             });
             animals.value = data;
-        } catch(err) {
+        } catch (err) {
             console.log(err);
         }
     }

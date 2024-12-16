@@ -9,25 +9,21 @@ use Illuminate\Database\Eloquent\Builder;
 
 class AnimalQueryBuilder extends Builder
 {
-
-    public function sortByAndDirection(?string $sortBy, ?string $direction): self
+    public function sortByAndDirection(string $sortBy, string $direction): self
     {
-        if ($sortBy === 'type') {
-            $this->query->orderBy(
+        match ($sortBy) {
+            'type' => $this->query->orderBy(
                 Type::select('name')->whereColumn('id', 'animals.type_id'),
                 $direction
-            );
-        } elseif ($sortBy === 'breed') {
-            $this->query->orderBy(
+            ),
+            'breed' => $this->query->orderBy(
                 Breed::select('name')->whereColumn('id', 'animals.breed_id'),
                 $direction
-            );
-        } elseif ($sortBy) {
-            $this->query->orderBy($sortBy,
+            ),
+            default => $this->query->orderBy($sortBy,
                 $direction
-            );
-        }
+            ),
+        };
         return $this;
     }
-
 }
