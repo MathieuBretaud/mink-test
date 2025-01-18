@@ -1,0 +1,14 @@
+<div class="flex flex-col gap-2 w-44 max-w-xs">
+    <label for="{{ $name }}">{{ $label }}</label>
+    <select class="select select-bordered" name="{{ $name }}" id="{{ $name }}">
+        <option value="">{{ $placeholder }}</option>
+        @foreach($datas as $k => $v)
+            <option value="{{ $v->id }}" @selected($v->id == $value) >{{ $v->name }}</option>
+        @endforeach
+    </select>
+    @error($name)
+    <div class="text-red-500">
+        {{ $message }}
+    </div>
+    @enderror
+</div>
